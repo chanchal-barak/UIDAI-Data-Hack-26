@@ -1,0 +1,27 @@
+\section{Our Understanding of the Datasets}
+
+To derive meaningful societal trends, we analyzed three distinct aggregated datasets provided by UIDAI. Our approach moves beyond treating these as simple administrative logs; instead, we interpret them as high-fidelity proxies for human behavior, specifically \textbf{migration patterns} and \textbf{civic compliance}.
+
+\subsection{Dataset Interpretations}
+We utilized the following datasets to construct our analytical framework. Table \ref{tab:dataset_breakdown} details the specific columns used and our interpretation of their significance.
+
+\begin{table}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.5} % Adds breathing room to rows
+    \caption{Dataset Selection and Feature Interpretation}
+    \label{tab:dataset_breakdown}
+    \begin{tabular}{|p{0.25\linewidth}|p{0.3\linewidth}|p{0.35\linewidth}|}
+        \hline
+        \textbf{Dataset Name} & \textbf{Key Columns Used} & \textbf{Societal Interpretation} \\
+        \hline
+        \textbf{Aadhaar Enrolment} & \texttt{age\_0\_5} & \textbf{Natural Growth (Birth Rate):} Represents new entrants to the system, serving as a baseline for the native population of a district. \\
+        \hline
+        \textbf{Demographic Update} & \texttt{demo\_age\_18\_} & \textbf{Migration Signal:} Adults updating details (primarily address) strongly correlates with workforce migration to economic hubs. \\
+        \hline
+        \textbf{Biometric Update} & \texttt{bio\_age\_5\_17} & \textbf{System Compliance:} Represents children fulfilling mandatory updates. A gap here indicates \enquote{Invisible Children} at risk of suspension. \\
+        \hline
+    \end{tabular}
+\end{table}
+
+% next section
+\noindent \textit{In the following section, we define the mathematical models derived from these features: the Migration Intensity Index (MII) and the Bio-Update Lag (BUL).}

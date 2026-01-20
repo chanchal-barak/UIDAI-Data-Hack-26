@@ -1,0 +1,45 @@
+\section{Methodology}
+
+To translate raw administrative data into actionable governance insights, we developed two proprietary metrics: the \textbf{Migration Intensity Index (MII)} and the \textbf{Bio-Update Lag (BUL)}. These metrics allow us to normalize district-level data and identify anomalies.
+
+\subsection{Migration Intensity Index (MII)}
+This metric identifies districts acting as \enquote{magnets} for migrant workers. It hypothesizes that a district with low natural growth (low child enrolment) but high adult activity (high demographic updates) is a migration destination.
+
+\begin{equation}
+    MII_{d} = \frac{\text{Adult Demo Updates}_{d}}{\text{Child Enrolment}_{d} + 1}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $MII_{d}$ is the index for district $d$.
+    \item A high score ($> 5.0$) indicates a \textbf{Migrant Destination Hub}.
+    \item A low score ($< 0.5$) indicates a \textbf{Rural Region}.
+\end{itemize}
+
+\subsection{Bio-Update Lag (BUL)}
+This metric identifies compliance gaps. According to UIDAI regulations, children must update biometrics at age 5 and 15. We compare the mandatory update volume against the district's baseline enrolment history.
+
+\begin{equation}
+    BUL_{d} = \frac{\text{Biometric Updates (5-17)}_{d}}{\text{Child Enrolment (0-5)}_{d}}
+\end{equation}
+
+\noindent A low $BUL$ score signals that a district has a large population of children who are failing to complete their mandatory updates, putting them at risk of service disruption.
+
+\subsection{Technical Implementation}
+We implemented this logic using Python (Pandas). The data was aggregated by district to smooth out daily volatility.
+
+\noindent
+\begin{minipage}{\linewidth}
+\begin{lstlisting}[language=Python, caption=Calculating the Migration Index]
+# Feature Engineering: Migration Intensity Index
+# We add +1 to the denominator to handle edge cases with 0 enrolments
+
+df['migration_index'] = df['demo_update_adult'] / (df['enrol_child'] + 1)
+
+# Identifying the top 'Magnet' districts
+migrant_hubs = df.sort_values(by='migration_index', ascending=False)
+\end{lstlisting}
+\end{minipage}
+
+\subsection{Outlier Detection}
+We applied a ranking algorithm to filter the top 20 and bottom 20 districts for both metrics. This isolates the \enquote{extreme cases} that require immediate administrative intervention, filtering out average-performing districts to focus resources where they are needed most.

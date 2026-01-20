@@ -1,0 +1,34 @@
+% import your package here 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{inconsolata}
+\usepackage{float}
+
+\usepackage[square,numbers]{natbib}
+\AtBeginDocument{
+  \renewcommand{\bibsection}{\section{\bibname}}
+} % Bibliography in numbered chapter
+
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{parskip}
+\usepackage{lmodern}
+\usepackage{xcolor}
+\setlength {\marginparwidth }{2cm} 
+\usepackage{todonotes}
+\usepackage{csquotes}
+
+% Load hyperref at the end to avoid conflicts
+\usepackage[bookmarks,breaklinks,colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{bookmark}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single,
+    backgroundcolor=\color{gray!10},
+    keywordstyle=\color{blue},
+    commentstyle=\color{green!50!black}
+}

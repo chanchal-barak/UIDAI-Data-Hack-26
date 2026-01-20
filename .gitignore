@@ -1,1 +1,14 @@
 data/
+.venv/
+__pycache__/
+
+build/
+!build/*.pdf
+
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
